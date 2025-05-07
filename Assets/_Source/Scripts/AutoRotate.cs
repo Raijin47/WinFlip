@@ -13,7 +13,6 @@ public class AutoRotate : MonoBehaviour
     [SerializeField] private ButtonBase _next;
 
     [Space(10)]
-    [SerializeField] private int[] _prices;
     [SerializeField] private Material[] _materials;
 
     private SkinnedMeshRenderer _renderer;
@@ -66,7 +65,7 @@ public class AutoRotate : MonoBehaviour
         }
         else
         {
-            if (Game.Wallet.Spend(_prices[Current]))
+            if (Game.Wallet.Spend(5000))
             {
                 Game.Data.Saves.IsPurchased[Current] = true;
                 UpdateUI();

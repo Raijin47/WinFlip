@@ -372,7 +372,7 @@ AudioSource:
   m_audioClip: {fileID: 8300000, guid: b810154cb6168b941b5602e6b033942c, type: 3}
   m_Resource: {fileID: 8300000, guid: b810154cb6168b941b5602e6b033942c, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.5
+  m_Volume: 1
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -608,10 +608,12 @@ MonoBehaviour:
     _onClick: {fileID: 8300000, guid: 0d3b18232c2bcda44bb153ed5ea26e53, type: 3}
     _onWin: {fileID: 0}
     _onLose: {fileID: 0}
-    _onSpendMoney: {fileID: 0}
+    _onSpendMoney: {fileID: 8300000, guid: 2070d80555aa9f7489ec9ef9aa03687d, type: 3}
     _clips:
     - {fileID: 8300000, guid: 6a59e35648edfe94598129eec5bb007a, type: 3}
     - {fileID: 8300000, guid: b426d48ecc064a54b9a71d13166a9957, type: 3}
+    - {fileID: 8300000, guid: 80bedad269aebed47b4a7c86f722ae03, type: 3}
+    - {fileID: 8300000, guid: 84fc4f2d24aeaa040af14a2cd8d116a3, type: 3}
   _wallet:
     _money: 0
     _starting: 0

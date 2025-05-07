@@ -49,28 +49,34 @@ public class Box : MonoBehaviour, IPointerClickHandler
             case BoxType.Up:
                 floor.NextFloor = floor.CurrentFloor + 1;
                 handler.AddMoney(handler.Money + 5);
+                handler.Send(true);
                 break;
             case BoxType.Down:
                 floor.NextFloor = floor.CurrentFloor - 1;
+                handler.Send(false);
                 break;
             case BoxType.DoubleUp:
                 floor.NextFloor = floor.CurrentFloor + 2;
                 handler.AddMoney(handler.Money + 10);
+                handler.Send(true);
                 break;
             case BoxType.Damage:
                 floor.NextFloor = floor.CurrentFloor + 1;
                 handler.Damage();
                 Game.Audio.PlayClip(0, 0.5f);
                 _damageParticle.SetActive(true);
+                handler.Send(false);
                 break;
             case BoxType.MoneyBoost:
-                floor.NextFloor = floor.CurrentFloor + 3;
-                handler.AddMoney(handler.Money * 1.5f);
+                floor.NextFloor = floor.CurrentFloor + 1;
+                handler.AddMoney(handler.Money + 5);
+                handler.Send(true);
                 break;
             case BoxType.Heal: 
                 floor.NextFloor = floor.CurrentFloor + 1;
                 Game.Audio.PlayClip(1);
                 handler.Heal();
+                handler.Send(true);
                 break;
         }
     }
