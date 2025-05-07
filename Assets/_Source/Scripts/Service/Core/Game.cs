@@ -5,10 +5,13 @@ using UnityEngine;
 using Utilities.Container;
 using Utilities.Singleton;
 using UnityEngine.SceneManagement;
+
 public class Game : SingleBehavior<Game, DontDestroyModifyPattern>
 {
-    [SerializeField] private GameAudio _audio;
+    [SerializeField] private bool _installer;
 
+    [Space(10)]
+    [SerializeField] private GameAudio _audio;
     [SerializeField] private Wallet _wallet;
     [SerializeField] private AudioSpriteSwap _audioSettings;
     [SerializeField] private SceneLoader _loadScreen;
@@ -41,13 +44,15 @@ public class Game : SingleBehavior<Game, DontDestroyModifyPattern>
         SaveService.LoadingData();
         _wallet.Init();
 
-        _loadScreen.Init();
-        StartCoroutine(_loadScreen.Init());
+        if (_installer)
+        {
+            _loadScreen.Init();
+            StartCoroutine(_loadScreen.Init());
+        }
     }
 
     public void LoadScene(int index, LoadSceneMode mode) => StartCoroutine(_loadScreen.LoadScene(index, mode));
-    public void Menu() => StartCoroutine(_loadScreen.UnloadScene());
-    public void Retry() => StartCoroutine(_loadScreen.Retry());
+
     public Game Add(IContainer container, bool dontDestroyParent = false)
     {
         if (MapContainers.ContainsKey(container.GetType()))

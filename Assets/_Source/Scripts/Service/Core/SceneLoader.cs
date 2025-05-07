@@ -54,57 +54,6 @@ public class SceneLoader
         yield return FadeLocation(0);
     }
 
-    public IEnumerator UnloadScene()
-    {
-        yield return FadeLocation(1);
-
-        _content.SetActive(true);
-        _progressBar.value = 0;
-        _progressText.text = "0%";
-
-        AsyncOperation load = SceneManager.UnloadSceneAsync(_current);
-
-        while (!load.isDone)
-        {
-            _progressBar.value = load.progress;
-            _progressText.text = $"{Mathf.RoundToInt(load.progress * 100)}%";
-            yield return null;
-        }
-
-        yield return new WaitUntil(() => load.isDone);
-
-        _content.SetActive(false);
-
-        Game.Instance.Single<PageMenu>().Enter();
-
-        yield return FadeLocation(0);
-    }
-
-    public IEnumerator Retry()
-    {
-        yield return FadeLocation(1);
-
-        _content.SetActive(true);
-        _progressBar.value = 0;
-        _progressText.text = "0%";
-
-        yield return SceneManager.UnloadSceneAsync(_current);
-        AsyncOperation load = SceneManager.LoadSceneAsync(_current, LoadSceneMode.Additive);
-
-        while (!load.isDone)
-        {
-            _progressBar.value = load.progress;
-            _progressText.text = $"{Mathf.RoundToInt(load.progress * 100)}%";
-            yield return null;
-        }
-
-        yield return new WaitUntil(() => load.isDone);
-
-        _content.SetActive(false);
-
-        yield return FadeLocation(0);
-    }
-
     private YieldInstruction FadeLocation(float value)
     {
         return DOTween.

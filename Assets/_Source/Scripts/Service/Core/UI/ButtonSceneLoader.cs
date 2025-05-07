@@ -15,7 +15,6 @@ public class ButtonSceneLoader : ButtonBase
     {
         base.Click();
 
-        Game.Instance.Single<PageMenu>().Exit();
-        Game.Instance.LoadScene(_sceneBuildIndex, LoadSceneMode.Additive);
+        Game.Instance.LoadScene(_sceneBuildIndex, LoadSceneMode.Single);
     }
 }
